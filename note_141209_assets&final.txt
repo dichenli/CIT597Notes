@@ -1,0 +1,35 @@
+final review 3 pm
+Department wide demonstration, informal, levine lobby, 12pm, Google, Facebook, comcast
+
+View: Layout
+Asset Tags
+stylesheet_link_tag
+javascript_include_tag
+application.js is a manifest file that include all needed JS files (so it's a header file)
+
+include_tree is used for hieriarcy include of all related .js files. In production mode, all them are compressed to one .js file.
+
+image_tag: it could have multiple image types, you need to specify what file types to include
+
+yield & content_for: to yield different parts of a view file into separate places of the layout (example on Rails guide, yield :head, content_for :head). Good practice is not to include too many different parts of yield. It will be too complecated to keep track
+
+Partial: to include multiple view files into one. Always start with a "_". It's not designed for showing independently
+
+heroku addons, add gem in production mode
+
+final exam:
+style is the same as mid term, 
+vocab, a word list
+multiple choice (10 questions)
+no debug nor writing code questions
+short answer question 
+	example: assuming some existing views, controllers, routes. I want to add function x, what I need to add? write out the steps and codes. Know the syntax, but slightly wrong won't affect too much credits
+	example: modeling university, every professor teach one class, one student can sign up for sevral classes. one class is taught by one professor, etc. How to setup relationship
+	example: setup validations, what validations to take for nested relationship? what validations to use for certain purpose?
+	example: how to set up and do test
+won't ask questions about broad things not covered in class but you may know well from project, such as devise
+
+
+
+
+

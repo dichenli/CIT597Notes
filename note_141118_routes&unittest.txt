@@ -1,0 +1,93 @@
+rake db:seed #do seed to load pre-written database file
+
+#in route, do :
+  resources :albums, :except => [:destroy, :show] do
+    resources :songs
+
+    member do
+      get 'rating' #generate URL: /albums/id/rating
+    end
+  end
+
+#Then in controller of albums, add rating method (method name corresponds to URL name)
+
+  def rating #album has_many reviews through songs, so album.reviews is allowed
+    @rating = Album.find(params[:id]).reviews.average(:rating)
+  end
+
+#Then in views/albums, add rating.html.erb
+
+<h2>Album Rating</h2>
+
+The Album rating is <%= @rating %>
+
+  #match 'photos/show' => 'photos#show', via => get
+  #this is equivalent to:
+  #get 'photo/show'
+
+#do sorting all albums:
+#controller
+  def sort #sort automatically by title
+    @albums = Album.order(:name)
+    render :index #call index.html.erb in view, take the @albums here, instead of the one in controller.index
+  end
+
+#in routes:
+  resources :albums, :except => [:destroy, :show] do
+    resources :songs
+
+    member do
+      get 'rating' #generate URL: /albums/id/rating
+    end
+
+    collection do
+      get 'sort'
+    end
+    #or:
+    #get 'sort', :on => collection
+  end
+
+#now sort by field:
+
+  def sort #sort automatically by title
+    @albums = []
+    #if Album.find(params[:field]), if wrong and weird input, it automatically reject the query
+    #but Album.order doesn't. So we need to do check on it
+    if(Album.attribute_names.include?(params[:field])) then
+      @albums = Album.order(params[:field])
+    end
+
+    render :index #call index.html.erb in view, take the @albums here, instead of the one in controller.index
+    #if invalid query, @albums == [], so it will render an empty list
+  end
+
+  resources :albums, :except => [:destroy, :show] do
+    resources :songs
+
+    member do
+      get 'rating' #generate URL: /albums/id/rating
+    end
+
+    collection do
+      get 'sort/:field' => 'albums#sort'
+    end
+    #or:
+    #get 'rating', :on => member
+  end
+
+
+########Unit test on Ruby ###########
+
+cucumber is not doing unittesting, each test is testing the system in a whole (MVC) so is system testing
+
+unittest principles:
+FIRST:
+-fast (test shouldn't take a long time)
+-Independent(can run tests in any order)
+-repeatable
+-self-checking
+-timely (if you have code, write test immediately. code changed, test updated immediately)
+
+
+
+

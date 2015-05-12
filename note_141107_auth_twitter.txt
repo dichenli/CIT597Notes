@@ -1,0 +1,27 @@
+first install:
+gem 'devise'
+gem 'omniauth-oauth'
+gem 'omniauth-twitter'
+
+have a user model
+#rails g migration AddUidToUser uid:string
+#rails g migration RemoveUidToUser
+#rake db:migrate
+#then look at config/db/migrate file
+
+twitter API key:
+
+see config/initializer/devise, 
+
+config.omniauth :twitter, "api key?", "apikey??"
+
+in controller, 
+
+<%= link_to "log in with  your twitter account", user_omniauth_authorize_path(:twitter) %>
+
+class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+	def twitter
+		@user = User.from_omniauth(request.env["omniauth.auth"])
+		if user.persisted?
+			sign_in

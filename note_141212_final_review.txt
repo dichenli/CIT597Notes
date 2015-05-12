@@ -1,0 +1,86 @@
+Cloud based software: to access data from everywhere
+SaaS: 
+(PaaS: platform as a service)
+
+waterfall vs agile
+agile development: being close to client, meeting frequently to learn client feedbacks and demand, frequent iterations...
+including scrum and extreme programming as ways to execute agile methodology
+Scrum software development: very close collaboration of small team, meeting everyday,  ... including sprint programming
+sprint programming: http://en.wikipedia.org/wiki/Sprint_(software_development)
+extremely programming: (TDD and BDD)
+
+URL: 
+first using DNS to convert URL to IP
+Then go to port number
+Ports are for maintaining multiple services (applications) on the same HOST
+Port 80: for HTTP. 8080: alternative for HTTP
+HTTP methods: Get, post, put delete, its relation to CRUD (as in database)
+Create = PUT with a new URI
+         POST to a base URI returning a newly created URI
+Read   = GET
+Update = PUT with an existing URI
+Delete = DELETE
+Layered internet: Link (network), internet (IP, IPv4, IPv6), transport(TCP/UDP), appliction(HTTP)
+
+MVC
+models: where you keep data
+view: front ends, everything about how to present
+controller: brings model and view together, contains all functionalities
+
+ORM: object relational mapping
+company has_many invoices
+invoices belongs_to company
+an entity is a table, a row is an instance of entity
+not all tables are entities, but all entities are tables
+
+Keys: primary key, candidate keys, foreign key
+
+app
+	MVC, helper, assest pipeline
+config
+	routes: 
+	resoureceful routes: index, show, edit, new, create, update, destroy
+DB
+gemfile.rb
+
+validation: before_validation
+in controller: before_filter, before_action
+arr = [1, 2, 3, 4]
+arr.select {|x| x % 2 == 0}
+reduce, map, filter
+User.all.map(&:name) $ represents block, :name is the symbol for a method, it's equivalent to map{|u| u.name}
+user.all.select{|u| u.age >= 21}
+
+class CIT593 < CIT {
+	@@ student = 50
+}
+
+class CIT 597 < CIT {
+	@@ student = 30
+}
+
+A = CIT593.new
+B = CIT597.new
+
+class variable is changed and it will affect all subclasses
+A.student == 30
+B.student == 30
+
+module: multiple modules can be mixed in to one class
+in module you can define instance variables and methods, but module can't be instaniated. class can't inherit more than one class, but can inherit more than one module
+module A
+	...
+end
+module B 
+	...
+end
+class someclass
+	include A
+	include B
+	...
+end
+
+
+
+
+

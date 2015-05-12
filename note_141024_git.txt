@@ -1,0 +1,48 @@
+#install git
+#below are terminal lines:
+mkdir recitation
+cd recitation
+git init
+emacs readme
+ls #=> readme
+git add readme
+git commit
+git commit -m "my first message"
+#1 file changed, 1 insertion (1 line of insetion)
+git remote add origin https://github.com/josh-of-all-trades/recitation.git
+#then go to github, do some change to readme file there
+git push -u origin master
+emacs readme
+git status
+
+# a resporatory: a complete copy of the project
+# fork: make several copies of resporatory, do changes to each independently, then merge later
+# branch: changes made to a same resporatory
+# when you push change, if there is conflict with change online, the version pushed earlier has priority.
+# If I pushed something, whatever change you want to make, you need to pull first and merge locally.
+
+#If you want to always know what is going on in other people's work (in a small group), always use one branch and push on the same branch. If it is a large project with many people contributing, you don't care what other people are doing the other part of the program, it's better to branch.
+
+git add <filename>
+git commit -m "some message to other collaborators"
+#the first two lines are done locally
+git pull
+git push
+
+git log #see past history of changes to the project
+git status
+git revert <a string of log number>
+git revert --abort
+git stash #save the change I make now, and don't push it now.
+git stash list #show all things you done that stashed
+git fetch #get the stached change
+sudo apt-get install gitk
+#gitk a software to help organize git
+
+
+#rails project:
+rails new Quotes
+
+
+########Git codes from https://try.github.io/levels/1/challenges/1 ##########
+

@@ -1,0 +1,37 @@
+ruby gem rspec for behavior driven unit test:
+install rspec plugin for Rubymine?
+
+tennis_rspec.rb
+
+require_relative 'tennis_scorer'
+require 'simplecov'
+SimpleCov.start #tells you what part of code has been covered
+
+describe "basic scoring" do
+	before(:each) do
+		@ts = TennisScorer.new
+	end
+
+	it "should start with a score of 0-0" do
+		#ts = TennisScorer.new
+		ts.score.should == "0-0"
+	end
+	it "should be 15-0 is the server wins a point" do
+		#ts = TennisScorer.new
+		ts.give_point_to(:score)
+		ts.give_point_to(:server)
+		ts.score.should == "15-0"		
+
+	it "should be 0-15 if the receiver wins a point"
+	it "should be 15-15 after they both win a point"
+end
+
+tennis_scorer.rb
+class TennisScorer
+	def score
+		"0-0"
+	end
+
+end
+
+VCR gem: save what you got from the internet in the first time, then save it and replay for future tests

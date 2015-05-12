@@ -1,0 +1,71 @@
+//In command lines:
+heroku // to show all instructions
+//you can set up ssh key so you won't login everytime
+//heroku works in close relation with git
+//heroku also has dropbox plugin so whatever in dropbox can be sync to the project
+heroku create //create heroku project
+git remote -v //will show heroku version as well
+git push heroku master //push to heroku
+
+//sqlite3 is not recommanded for production mode
+//so open up gem file:
+group :production do
+	gem 'pg' //still need to have pg installed in computer to do bundle install
+end
+
+bundle install --without production // so in test mode you won't need to install pg
+git commit -am "update to use pg"
+//pg : PostgreSQL
+
+heroku addons:add heroku-postgresql // to enable pg on heroku
+
+git push heroku master //push again to make it work
+heroku open //will fail
+heroku run rake db:migrate //do migration on remote server
+//The client side don't understand anything else other than HTML, CSS, JS, so we need to precompile other codes
+//also it can't find some icon image files etc. It's forgiving in dev mode, but not production mode. 
+//So first remove all these lines in view that require the images unless we have them
+
+heroku run rake db:seed
+heroku ps:scale web=1 //set scale to be only one 
+
+heroku logs //see heroku running logs
+
+//about tests:
+//in rails 3:
+//unit; functional; integration
+//in rails 4:
+//models; controllers; integration
+//cucumber is the system-wide integration test, level above all the other tests
+
+rake -T -A | grep test
+
+//use r-spec, in gemfile, under test mode:
+gem 'rspec-rails'
+bundle install
+gem 'simplecov' require: false
+
+rails g --help
+rails g rspec:install
+
+//in test_helper.rb && rspec_helper.rb
+require 'simplecov'
+
+/*
+create .simplecov in root dir of project,
+open and do:
+*/
+SimpleCov.start 'rails' do 
+	//nothing needs to write here
+end
+
+//to initiate rails test:
+rake db:test_prepare
+rake test
+//run spec test
+rake spec
+
+/*in the project there will be a coverage folder with html to show your project coverage info*/
+
+
+

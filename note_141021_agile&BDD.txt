@@ -1,0 +1,63 @@
+Why is it hard to build software?
+-Can't foresee problems
+-What quality, cost schedule?
+-Dependencies
+-Integration
+-People are hard to work with
+-Hard to estimate time
+-Developers over/under-estimate
+-Customers requirements are not clearly defined
+-Requirements change
+-Requirements are not realistic
+
+Waterfall/Plan & Document
+Requirements -> design -> implement -> testing -> deploy/maintain
+Too rigid, not flexible. Most suitable for large heavy well-defined project such as flying to the moon.
+
+Agile programming: http://agilemanifesto.org/
+Extreme Programming: http://www.extremeprogramming.org/
+
+User Story: lightweight description of how app will be used, specify user, goal and task. Each user story is a small and focused one that requires one unit of the product to achieve.
+Example: 
+As a [stakeholder],
+in order to [goal],
+I want to do [task].
+
+What is a good user story?
+It must be Smart:
+--specific
+--measurable
+--achievable
+--relevant
+--timeboxed
+Unspecific user story: As a user, I can sort the albums.
+Make it more specific: As a user, I can sort by price
+Not measurable: As a user, the page should load fast
+Correct it: As a user, 95% of the pages should load in <3 seconds.
+achievable: typically small enough to be achievable within one iteration
+relevant: Why should I care? What drives me to achieve this? Be specific
+timeboxed: achieve it within a certain amount of time, in a certain iteration
+
+
+
+Behavior question: Validation: -am I building the right product? - BDD
+implementation question: Verification: am I building the product right? - TDD
+validation question comes first in software development, verification question comes during implementation.
+
+BDD: behavior driven development:
+-Have user stories
+-For each user story, estimate: point values: 1. 2. 3. ...
+	1. straightforward (easy)
+	2. medium
+	3. complex
+	4. out of scope, we need to break down the user story into several smaller ones, or do it later?
+-Planning iteration: how long is each iteration? how much work to do in each iteration (not too much or too little)?
+-Velocity (how much work our team can do in each iteration?)
+--The whole process is more an art rather than science, there is no fixed formula for planning and iterations. 
+
+
+Lo-Fi UIs
+low-fidelity UI: When you spend less effort on UI, you get more feedback from users on what they really like. 
+
+
+

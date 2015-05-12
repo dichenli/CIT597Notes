@@ -1,0 +1,36 @@
+user
+id:int
+name:string
+password:string
+email:string
+
+devise (to enable login)
+email:string
+password:string
+#in conflict!
+
+
+rails generate scaffold user string:name string:email string:password
+rake db:migrate
+rails generate migration RemoveEmailFromUsers #rails is smart enough to know you have users and have email in users, and you want to remove email
+rake db:migrate #to remove conflict
+rails generate migration addCustomerIdToUsers
+migration is used to make a model
+
+#clone from github
+git clone the github'sURL
+ls -a (see hidden files)
+
+
+rails g scaffold User name:string, email:string, num_quotes:integer, has_many :quotes, .......
+
+open gemfile, add gem 'devise'
+rake db:migrate
+
+rails generate migration AddDeviseToUser
+rake db:migrate
+
+online starter of devise
+https://github.com/plataformatec/devise#getting-started
+
+

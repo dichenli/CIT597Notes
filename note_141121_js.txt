@@ -1,0 +1,40 @@
+jQuery vs js:
+
+lighter syntax
+jQuery is a JavaScript Library.
+jQuery greatly simplifies JavaScript programming.
+
+code.jquery.com has script files to import
+
+$(document).ready(function(){ //ready means the page load is finished
+	$('.lightbox').click(function() { //.lightbox means id = lightbox, similar to that in css
+		$('body').append('<div id="wrapper"></>'); //when clicked, it add a wrapper to body
+	}
+})
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script>
+	function changetext() {
+		if(document.getElementById("changed").style.color != "blue") {
+			document.getElementById("changed").innerHTML("This is a header in blue");
+			document.getElementById("changed").style.color = "blue";
+		} else {
+			document.getElementById("changed").innerHTML("Back to black");
+			document.getElementById("changed").style.color = "black";
+		}
+	}
+	</script>
+</head>
+
+<body>
+	<h1 id="changed">
+		this is a cool title with black text
+	</h1>
+	<button color="blue" type="button" onclick="changetext"> Click me! </button>
+	<!-- onclick makes a js function call to changetext()-->
+	
+</body>
+
+</html>

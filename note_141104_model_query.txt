@@ -1,0 +1,80 @@
+rails c #go to controller
+Album.all
+Album.attribute_names #get info about attributes
+
+Album.create(:name=> "My album", :price => 10)	#create a new album in this way
+=> #<Album id: 5, name: "My album", price: 10.0, release: nil, created_at: "2014-11-04 17:21:02", updated_at: "2014-11-04 17:21:02"> 
+
+a = Album.new(:name=> "another album")
+ => #<Album id: nil, name: "another album", price: nil, release: nil, created_at: nil, updated_at: nil> 
+#id is nil because we haven't saved a to database
+
+a.save
+#will return false because we didn't assign price (validation required it), so database refuse to save it
+
+a.errors  #will tell you why it went wrong: @messages={:price=>["can't be blank"]}> 
+ => #<ActiveModel::Errors:0x007ff4e2f44488 @base=#<Album id: nil, name: "another album", price: nil, release: nil, created_at: nil, updated_at: nil>, @messages={:price=>["can't be blank"]}> 
+
+a = Album.new(:name=> "another album", :price=>20) #(or a.price = 20)
+a.save #will succed
+
+
+How to save a same copy of database amoung developer teams (for tests, etc)
+use seeds.rb (in db/migrate)
+
+open seeds and do changes (see the spotify codes...)
+Then in terminal, use:
+rake db:seed
+It will create new album objects by the code
+
+
+Structured query language (SQL):
+a abstract database language that can work with various databases
+-select	
+-project
+-join
+
+example
+Nations
+Name -string
+Latitude -number
+N_S -string
+Interest -String
+
+select		:take rows from one table, typically used to create a new table
+		SELECT <boolean expression> From <Table_Name> (case insensitive)
+
+A = SELECT Interest==Voting From Nations
+(Now A is a new table)
+SELECT ... from A
+ 
+
+project		:take columns from table
+		PROJECT N_S from Nations
+		PROJECT <col1,col2,col3...> from <table>
+		in database, rows must be unique, so when project, it will automatically remove duplicate and
+		return maybe fewer rows than the original table
+
+
+
+rails c
+Album.destroy_all
+
+Album.find(33) #(33 is album id)
+=> #<Album id: 33, name: "My generation", price: 10.0, release: nil, created_at: "2014-11-04 17:59:19", updated_at: "2014-11-04 17:59:19"> 
+
+Song.where("album_id = 33") #find all the songs where album_id is 33
+Song.where("album_id = ?", 33) #same thing done, but safer way to do it
+Song.where("album_id = ?", #{user_input}) ##{user_input} shouldn't be in the string directly otherwise user can input SQL code into string to do bad things. Use ? now rails will sanitize the query to make sure no SQL code is sent into query
+
+Song.order(:title) #sort songs by title
+
+Song.where("album_id = ?", 34).order(:title) #first find, then sort
+
+Song.where("title like '%to%'") #will find all songs whose name includes "to" anywhere
+
+Song.count #return total number of songs
+
+Album.average(:price) #generate average price of all albums
+
+#see official guide for DB queries: http://guides.rubyonrails.org/active_record_querying.html

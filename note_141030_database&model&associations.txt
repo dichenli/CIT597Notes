@@ -1,0 +1,100 @@
+Database:
+collection of tables for system to organize, store and retrieve large amounts of data
+
+Database Model:
+Theory foundation of database on how data is organized, stored, etc.
+(example: ActiveRecords in rails)
+
+Ralational DB:
+-Describes relationships among data
+
+-Hierarchical
+-Network
+-OO
+-NoSQL #currently mainstream model, use hash data structure, supports all three features above
+
+Tables
+	Entities(a column of the table)
+		Name
+		Data Type
+
+
+Important properties of Relational DB: 
+1. all rows of tables are unordered
+2. each row is unique
+3. Keys: subset of entities
+
+
+Example of entities:
+Name_of_country - string
+North_South - String
+Latitude - number
+Longitude - number
+interest - string
+
+-Candidate Key: Any set of keys you could choose that gurantees uniqueness towards any row
+	-Name_of_country
+	-{Latitude, Longitude}
+
+-Primary Key: the candidate key you choose to use
+
+column types that are supported by rails : :primary_key, :string, :text, etc. Unsupported types can be used as long as you know the DB you use supports it and you define the type well. If you decide to change DB, you need to manually change the custom keys to support new DB.
+For default types, rails will do the work for you
+
+in rails, id :integer is the primary key for DB by default. You can change primary key.
+id auto increments as new rows are added
+
+schema: table names, primary key, entities
+
+Active Record (rails)
+ORM Object-relational mapper: it maps relational tables to objects in ruby
+It maps from #{x} in ruby to #{y} in DB automatically.
+	x			y
+1.	Attributes	Entities/Columns
+2. 	Class		Table
+3.	Instances	Rows
+
+
+Rails support these types of associations (relations):
+belongs_to
+has_one
+has_many
+...(6 of them)
+
+for example:
+
+class Order < ActiveRecord::Base
+    belongs_to :customer
+end
+
+Because of this relationship, each object of class Order will have an attribute of customer id, to indicate which customer object this order belongs to. However, there is nothing new generated in the customer object.
+Some methods will be activated automatically by rails, such as Order.customer, .create_customer, etc.
+
+class Customer <ActiveRecord::Base
+    has_many :orders
+end
+
+Now customer table knows it has multiple orders belong to itself. Some methods will be automatically generated then, such as customer.orders.each
+
+rails g scaffold song title:string length:time album:references
+rake db:migrate
+rails s
+
+then the song now belongs to an album, when you create a new song, you will need to specify album id
+
+go to view, change 
+f.text_field :album
+to:
+f.text_field :album_id
+
+now the DB associates album_id
+
+next add album_id to attr_accessible
+
+next in album model, add has_many :songs (not song! convention over configuration)
+
+rails is clever enough to converts between single and plural forms of english words
+
+Next in create new song, change its view to select exsiting albums from a drop_down:
+
+<%= collection_select :song, :album_id, :Album.all, :id %>

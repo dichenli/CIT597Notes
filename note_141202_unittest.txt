@@ -1,0 +1,28 @@
+//Unit test in rails:
+//in test_helper.rb, add 
+require 'simplecov'
+
+fixtures :all
+
+//in fixtures, add
+one: 
+	title: Christmas
+	description: MyTest
+
+two:
+	title: Thanksgiving
+	description: MyTest
+	
+//in test/unit/helpers/playlist_test.rb 
+
+
+
+//in command
+rake -T -A | grep test		//show all tests
+rake test					//will run all tests
+
+//you should write unit test for all validations in model
+
+
+//assets: when deployed to production mode: need to find assets from public folder. Assets need to be precompiled to accellarate
+rake assets:precompile

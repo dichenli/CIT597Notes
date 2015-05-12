@@ -1,0 +1,38 @@
+devise: has user, password. 
+
+twitter: uid, name
+
+facebook: uid, name, email, password
+
+add a 'like' button to listing quote. No need for view, we just add a like button in quote view. 
+We need a 'like' model. 
+rails g model like user:references quote:references
+
+In the view of quotes, add: 
+<td><%= link_to 'Like', like_quote_path(quote: :quote.id) method: :post %><\td>
+
+go to config/routes
+post 'like/quote' => "users#like"
+
+go to user model:
+has_many likes
+
+go to like model:
+belong_to user
+
+go to controller of user
+def like
+	#set_user is needed but  set in before_action
+	newLike = @user.likes.new #create will try to put the object to database, new will just make new object
+	quote = Quote.find(params[:quote])
+	newLike.quote = quote
+	newLike.save
+	redirect_to quote_path
+end
+
+Likes.all
+User.find(1)
+User.find([2, 4, 8])
+User.find_by first_name: "Josh"
+str = "there is beer"
+Quoyes.find_by quote: str

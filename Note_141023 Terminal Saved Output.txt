@@ -1,0 +1,127 @@
+Last login: Thu Oct 23 12:02:04 on ttys000
+seas1330:~ dichenli$ cucumber
+No such file or directory - features. Please create a features directory to get started. (Errno::ENOENT)
+seas1330:~ dichenli$ cd Documents/spotify/spotify
+seas1330:spotify dichenli$ cucumber
+Using the default profile...
+Feature: Album submission
+  As a user
+  so that I can track my albums
+  I want to add a new album to the list
+
+  Scenario: Add an album                      # features/AddAlbum.feature:6
+    Given I'm on the album creationpage       # features/AddAlbum.feature:7
+      Undefined step: "I'm on the album creationpage" (Cucumber::Undefined)
+      features/AddAlbum.feature:7:in `Given I'm on the album creationpage'
+    When I add a new album                    # features/AddAlbum.feature:8
+      Undefined step: "I add a new album" (Cucumber::Undefined)
+      features/AddAlbum.feature:8:in `When I add a new album'
+    Then I should see the newly created album # features/AddAlbum.feature:9
+      Undefined step: "I should see the newly created album" (Cucumber::Undefined)
+      features/AddAlbum.feature:9:in `Then I should see the newly created album'
+
+1 scenario (1 undefined)
+3 steps (3 undefined)
+0m0.006s
+
+You can implement step definitions for undefined steps with these snippets:
+
+Given(/^I'm on the album creationpage$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I add a new album$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see the newly created album$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+seas1330:spotify dichenli$ cucumber
+Using the default profile...
+Feature: Album submission
+  As a user
+  so that I can track my albums
+  I want to add a new album to the list
+
+  Scenario: Add an album                      # features/AddAlbum.feature:6
+    Given I'm on the album creationpage       # features/step_definitions/album_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/album_steps.rb:2:in `/^I'm on the album creationpage$/'
+      features/AddAlbum.feature:7:in `Given I'm on the album creationpage'
+    When I add a new album                    # features/step_definitions/album_steps.rb:5
+    Then I should see the newly created album # features/step_definitions/album_steps.rb:9
+
+1 scenario (1 pending)
+3 steps (2 skipped, 1 pending)
+0m0.005s
+seas1330:spotify dichenli$ rake db:test:prepare
+WARNING: db:test:prepare is deprecated. The Rails test helper now maintains your test schema automatically, see the release notes for details.
+seas1330:spotify dichenli$ cucumber
+Using the default profile...
+Feature: Album submission
+  As a user
+  so that I can track my albums
+  I want to add a new album to the list
+
+  Scenario: Add an album                      # features/AddAlbum.feature:6
+    Given I'm on the album creationpage       # features/step_definitions/album_steps.rb:1
+    When I add a new album                    # features/step_definitions/album_steps.rb:6
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/album_steps.rb:7:in `/^I add a new album$/'
+      features/AddAlbum.feature:8:in `When I add a new album'
+    Then I should see the newly created album # features/step_definitions/album_steps.rb:10
+
+1 scenario (1 pending)
+3 steps (1 skipped, 1 pending, 1 passed)
+0m2.360s
+seas1330:spotify dichenli$ cucumber
+Using the default profile...
+Feature: Album submission
+  As a user
+  so that I can track my albums
+  I want to add a new album to the list
+
+  Scenario: Add an album                      # features/AddAlbum.feature:6
+    Given I'm on the album creationpage       # features/step_definitions/album_steps.rb:1
+    When I add a new album                    # features/step_definitions/album_steps.rb:6
+    Then I should see the newly created album # features/step_definitions/album_steps.rb:13
+
+1 scenario (1 passed)
+3 steps (3 passed)
+0m0.194s
+seas1330:spotify dichenli$ cucumber
+Using the default profile...
+Feature: Album submission
+  As a user
+  so that I can track my albums
+  I want to add a new album to the list
+
+  Scenario: Add an album                      # features/AddAlbum.feature:6
+    Given I'm on the album creationpage       # features/step_definitions/album_steps.rb:1
+    When I add a new album                    # features/step_definitions/album_steps.rb:6
+    Then I should see the newly created album # features/step_definitions/album_steps.rb:13
+    Then show me the page                     # features/AddAlbum.feature:10
+      Undefined step: "show me the page" (Cucumber::Undefined)
+      features/AddAlbum.feature:10:in `Then show me the page'
+
+1 scenario (1 undefined)
+4 steps (1 undefined, 3 passed)
+0m0.200s
+
+You can implement step definitions for undefined steps with these snippets:
+
+Then(/^show me the page$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+seas1330:spotify dichenli$ rails g cucumber_rails_training_wheels: install
+Could not find generator cucumber_rails_training_wheels:.
+seas1330:spotify dichenli$ rails g cucumber_rails_training_wheels:install
+       exist  features/step_definitions
+      create  features/step_definitions/web_steps.rb
+       exist  features/support
+      create  features/support/paths.rb
+      create  features/support/selectors.rb
+seas1330:spotify dichenli$ 

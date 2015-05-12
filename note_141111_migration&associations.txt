@@ -1,0 +1,56 @@
+rails g migration --help
+
+rails g migration AddDescriptionToReview description:text
+#convention over configuration: AddDescriptionToReview does the change method automatically
+
+rake db:migrate
+
+#now we have added description to review model, but it has no views, we can add them by ourselves, or:
+
+#a destructive way
+rm -rf app/views/reviews/*
+#remove all files in views/reviews
+
+rails g scaffold Review rating:integer song:references description:text -s
+#-s means don't overwrite existing files
+#it will create new views for review model
+
+rake db:rollback #to revert last migrate
+rake db:migrate #to do migration again
+
+#good reference for migration:
+http://api.rubyonrails.org/classes/ActiveRecord/Migration.html
+
+annotate --routes
+
+
+in routes file, change:
+resources :albums, :except => [:destroy, :show]
+
+now show and destroy are not available to albums
+
+#routes globbing
+
+root :to => 'albums#index'
+
+  resources :albums do
+    resources :songs
+  end
+
+#now the routes would be: albums/album_id/songs/song_id
+
+#the level of nesting shouldn't be too much, it will make url too complicated
+
+in routes, we still need to keep resources :songs, otherwise song_path, new_song_path won't be defined.
+
+
+in song controller:
+
+  def index
+    if(params[:album_id]) then
+      @songs = Song.where('album_id = ?', params[:album_id])
+    else
+      @songs = Song.all
+    end
+  end
+

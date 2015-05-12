@@ -1,0 +1,21 @@
+#In order to find what will happen if error of no price happen:
+#first add no price validation in model (see model album.rb)
+#then open server, submit a create new album form without price
+# see HTML source page to find out a tag <div> price about error
+# then here validate using nokogiri that div.field with errors exists
+#then in terminal, type cucumber
+
+#for instructions to use capybara: https://github.com/jnicklas/capybara
+
+#cucumber -f html > ~/Documents/spotify/test.html
+#to create a local html file to show test results
+
+#cucumber --i18n help
+#show all languages available, it will help you write user story in other languages
+# cucumber --i18n en
+#use english
+#cucumber --help
+#help file for cucumber
+
+
+Add a new scaffold of playlist (rails g scaffold, rake db:migrate)

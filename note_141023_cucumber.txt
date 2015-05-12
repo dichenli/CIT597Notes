@@ -1,0 +1,31 @@
+rails console
+Album.all
+Album.find(1).price   # => 10.5
+exit
+
+(install and bundle install annotate(gem))
+annotate #write annotate of the database items in models
+annotate --routes #generate routes map, write annotate of what routes we have into the code (config/route.rb)
+
+#install cucumber gems, bundle install
+rails g cucumber:install capybara
+rails g cucumber_rails_training_wheels:install
+
+
+rake db:test:prepare #test mode
+
+#create a file AddAlbum.feature
+#type in : 
+Feature: Album submission
+	As a user
+	so that I can track my albums
+	I want to add a new album to the list
+	
+	Scenario: Add an album
+		Given I'm on the album creationpage
+		When I add a new album
+		Then I should see the newly created album
+
+
+
+

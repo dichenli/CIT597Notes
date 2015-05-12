@@ -1,0 +1,46 @@
+controller codes:
+localhost:3000/songs.json show json form
+
+SQL
+-Join:
+Album has id and name,
+Song has id, title and album_id
+JOIN TableX AND TableY ON <boolean expression>
+
+#this will join two tables and associate album with its songs
+JOIN Album AND Song ON Album.id == Song.album_id
+it will yield table:
+album.id || name || song.id || title || album_id
+
+(if we use: JOIN Album AND Song ON True
+if will do cartesian product of all possible (album, song) pairs and create each row for each pair)
+
+rails g scaffold review rating:integer song:references (references: belongs_to relation)
+rails c:
+Album.find(33).reviews (will show all reviews associated with song 33)
+Album.find(33).reviews.average(:rating) (calculate average of ratings)
+
+When validation will happen?
+create
+create!
+save
+save!
+update
+update!
+
+When validation is skipped?
+decrement!
+decrement_counter
+increment!
+increment_counter
+toggle!
+touch
+update_all
+update_attribute
+update_column
+update_columns
+update_counters
+
+
+notes on validations: see spotify
+
